@@ -1,5 +1,7 @@
 const express = require('express')
 
+const routes = require('./routes') // ./ é necessário pois é um arquivo e não um módulo
+
 const app = express()
 
 /**
@@ -7,23 +9,7 @@ const app = express()
  */
 app.use(express.json())
 
-/**
- * Tipos de parâmetros:
- * 
- * Query Params: Parâmetros nomeados enviados na rota após '?' (Filtros, paginação...)
- * Route Params: Parâmetros utilizados para identificar recursos
- * Request Body: Corpo da requisição, utilizados para criar ou alterar recursos
- */
-
- 
-
-app.post('/', (request, response) => {
-    
-    return response.json({
-        evento: 'semana omni stack 11.0',
-        aluno: 'Fernando Soares'
-    })
-})
+app.use(routes)
 
 app.listen(3333)
 
