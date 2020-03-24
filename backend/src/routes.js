@@ -1,16 +1,20 @@
 const express = require('express')
 const OngController = require('./controllers/OngController')
+const IncidentController = require('./controllers/IncidentController')
 
 const routes = express.Router()
 
 /**
- * Rota para recuperar a lista de ONGs
+ * Rotas para Ongs
  */
-routes.get('/ongs', OngController.list)
+routes.get('/ongs', OngController.index)
+routes.post('/ongs', OngController.create)
+
 
 /**
- * Rota para criar uma nova ONG
+ * Rotas para casos (incidents)
  */
-routes.post('/ongs', OngController.create)
+routes.get('/incidents', IncidentController.index)
+routes.post('/incidents', IncidentController.create)
 
 module.exports = routes
