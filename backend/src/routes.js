@@ -1,6 +1,7 @@
 const express = require('express')
 const OngController = require('./controllers/OngController')
 const IncidentController = require('./controllers/IncidentController')
+const ProfileController = require('./controllers/ProfileController')
 
 const routes = express.Router()
 
@@ -10,6 +11,10 @@ const routes = express.Router()
 routes.get('/ongs', OngController.index)
 routes.post('/ongs', OngController.create)
 
+/**
+ * Rotas para Profile
+ */
+routes.get('/profile', ProfileController.index)
 
 /**
  * Rotas para casos (incidents)
