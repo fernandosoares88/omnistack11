@@ -18,7 +18,15 @@ routes.post('/sessions', SessionController.create)
  * Rotas para Ongs
  */
 routes.get('/ongs', OngController.index)
-routes.post('/ongs', OngController.create)
+routes.post('/ongs', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        nome: Joi.string().required(),
+        email: Joi.string().required().email(),
+        whatsapp: Joi.number().required().min(10).max(11),
+        city: Joi.string().required(),
+        uf: Joi.string().required().length(2),
+    })
+}), OngController.create)
 
 /**
  * Rotas para Profile
