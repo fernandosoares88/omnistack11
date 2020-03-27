@@ -1,5 +1,5 @@
 const express = require('express')
-const {celebrate, Segments, Joi} = require('celebrate')
+const { celebrate, Segments, Joi } = require('celebrate')
 
 const OngController = require('./controllers/OngController')
 const IncidentController = require('./controllers/IncidentController')
@@ -31,7 +31,11 @@ routes.post('/ongs', celebrate({
 /**
  * Rotas para Profile
  */
-routes.get('/profile', ProfileController.index)
+routes.get('/profile', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.string().required(),
+    }).unknown()
+}), ProfileController.index)
 
 /**
  * Rotas para casos (incidents)
